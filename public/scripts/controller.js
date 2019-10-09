@@ -22,7 +22,7 @@ $(document).ready(function () {
         } else {
           client.publish(top.val(), pload.val());
           $("#PubDetails").show();
-          var row = "<tr><td>" + top.val() + "</td><td>" + pload.val() + "</td><td>" + time.toUTCString() + "</td></tr>";
+          var row = "<tr><td>" + top.val() + "</td><td>" + pload.val() + "</td><td>" + new Date($.now()).toUTCString() + "</td></tr>";
           $("#tb").append(row);
         }
       }))
@@ -31,7 +31,7 @@ $(document).ready(function () {
         client.subscribe(subscribeTopic.val())
         //client.publish(top.val(), pload.val());
         $("#SubDetails").show();
-        var row = "<tr><td>" + subscribeTopic.val() + "</td><td>" + time.toUTCString() + "</td></tr>";
+        var row = "<tr><td>" + subscribeTopic.val() + "</td><td>" + new Date($.now()).toUTCString() + "</td></tr>";
         $("#tbsub").append(row);
       })
       
@@ -39,7 +39,7 @@ $(document).ready(function () {
       client.on("message", function (topic, payload) {
         console.log([topic, payload].join(": "));
         $("#SubsPubDetails").show();
-        var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + time.toUTCString() + "</td></tr>";
+        var row = "<tr><td>" + topic + "</td><td>" + payload + "</td><td>" + new Date($.now()).toUTCString() + "</td></tr>";
         $("#tbsubs").append(row);
       })
 
